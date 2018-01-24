@@ -67,7 +67,7 @@
                                             <td><?php echo $transaksi->TGL_AKHIR_PENYEWAAN ?></td>
                                             <td><?php echo $transaksi->TGL_PENGEMBALIAN ?></td>
                                             <td>Rp. <?php echo number_format($transaksi->HARGA_MOBIL) ?></td>
-                                            <td>Rp. <?php echo number_format($transaksi->TOTAL*0.5) ?></td>
+                                            <td>Rp. <?php echo number_format($transaksi->DENDA) ?></td>
                                             <td>Rp. <?php echo number_format($transaksi->TOTAL) ?></td>
                                         </tr>
                                         <?php

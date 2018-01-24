@@ -132,7 +132,7 @@ class Transaksi_model extends CI_Model
         date_default_timezone_set('Asia/Jakarta');
         $date = date('Y-m-d H:i:s');
         $this->db->query("Update tb_mobil set STATUS_MOBIL=1 where ID_MOBIL='".$transaksi->ID_MOBIL."'",FALSE);
-        $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=1, STATUS_PEMBAYARAN=1, TGL_PEMBAYARAN=".$date.", DANA_KEMBALI=DANA_KEMBALI+".$transaksi->TOTAL." where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
+        $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=1, STATUS_PEMBAYARAN=1, TGL_PEMBAYARAN='".$date."', DANA_KEMBALI=DANA_KEMBALI+".$transaksi->TOTAL." where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
         $this->db->where("KODE_TRANSAKSI",$id);
         $this->db->update($this->table_detail,$data);
         return $transaksi->KODE_TRANSAKSI;
@@ -151,8 +151,11 @@ class Transaksi_model extends CI_Model
         $to_time = strtotime($data['TGL_PENGEMBALIAN']);
         $from_time = strtotime($transaksi->TGL_AKHIR_PENYEWAAN);
         // $data["DENDA"] = round(abs($to_time - $from_time) / 60,2)*$transaksi->TOTAL*50/100;
-        $data["DENDA"] = $transaksi->TOTAL*50/100;
-        $data["TOTAL"] = $transaksi->TOTAL+ $data["DENDA"];
+        if($to_time>$from_time) 
+            $data["DENDA"] = $transaksi->TOTAL/2; //50%
+        else
+            $data["Denda"] = 0;
+        $data["TOTAL"] = $transaksi->TOTAL+$data["DENDA"];
 
         $this->db->query("Update tb_mobil set STATUS_MOBIL=2 where ID_MOBIL='".$transaksi->ID_MOBIL."'",FALSE);
         $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=3, TOTAL_PEMBAYARAN= ". $data["TOTAL"].", DANA_KEMBALI=DANA_KEMBALI+".$transaksi->TOTAL." where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);

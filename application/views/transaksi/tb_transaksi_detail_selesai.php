@@ -26,11 +26,11 @@
                         	    <tr><td>TGL ORDER</td><td><?php echo $TGL_ORDER; ?></td></tr>
                         	    <tr><td>TOTAL PEMBAYARAN</td><td>Rp. <?php echo number_format($TOTAL_PEMBAYARAN); ?></td></tr>
                         	    <tr><td>TGL PEMBAYARAN</td><td><?php echo $TGL_PEMBAYARAN; ?></td></tr>
-                        	    <tr><td>BUKTI PEMBAYARAN</td><td><img src="<?php echo base_url('upload/bukti_pembayaran/'.$BUKTI_PEMBAYARAN); ?>" width="200px"></td></tr>
+                        	    <!-- <tr><td>BUKTI PEMBAYARAN</td><td><img src="<?php echo base_url('upload/bukti_pembayaran/'.$BUKTI_PEMBAYARAN); ?>" width="200px"></td></tr> -->
                         	    <tr><td>STATUS PEMBAYARAN</td><td><?php if ($STATUS_PEMBAYARAN==0){echo "MENUNGGU PEMBAYARAN";}else{echo "SUDAH DIBAYAR"; }?></td></tr>
                         	    <tr><td>STATUS TRANSAKSI</td><td><?php if ($STATUS_TRANSAKSI==0){echo "MENUNGGU DIPROSES";}else if($STATUS_TRANSAKSI==1){echo "BERJALAN"; }else{echo "SELESAI";}?></td></tr>
-                                <tr><td>DENDA</td><td>Rp. <?php echo number_format($STATUS_TRANSAKSI); ?></td></tr>
-                                <tr><td>DANA KEMBALI</td><td>Rp. <?php echo number_format($DANA_KEMBALI); ?></td></tr>
+                                <<!-- tr><td>DENDA</td><td>Rp. <?php echo number_format($STATUS_TRANSAKSI); ?></td></tr>
+                                <tr><td>DANA KEMBALI</td><td>Rp. <?php echo number_format($DANA_KEMBALI); ?></td></tr> -->
                         	</table>
                             <br><br><br>
                             <table class='table table-bordered table-striped' id='mytable'>

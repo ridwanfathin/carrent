@@ -148,7 +148,8 @@ class Transaksi_model extends CI_Model
         //hitung denda
         $to_time = strtotime($data['TGL_PENGEMBALIAN']);
         $from_time = strtotime($transaksi->TGL_AKHIR_PENYEWAAN);
-        $data["DENDA"] = round(abs($to_time - $from_time) / 60,2)*$transaksi->TOTAL*50/100;
+        // $data["DENDA"] = round(abs($to_time - $from_time) / 60,2)*$transaksi->TOTAL*50/100;
+        $data["DENDA"] = $transaksi->TOTAL*50/100;
         $data["TOTAL"] = $transaksi->TOTAL+ $data["DENDA"];
 
         $this->db->query("Update tb_mobil set STATUS_MOBIL=2 where ID_MOBIL='".$transaksi->ID_MOBIL."'",FALSE);

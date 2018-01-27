@@ -9,6 +9,8 @@ class Transaksi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Transaksi_model');
+        $this->load->model('M_mobil_admin');
+        $this->load->model('Users_model');
         $this->load->library('form_validation');        
 	    $this->load->library('datatables');
     }
@@ -182,8 +184,10 @@ class Transaksi extends CI_Controller
     	    'TGL_PEMBAYARAN' => set_value('TGL_PEMBAYARAN'),
     	    'BUKTI_PEMBAYARAN' => set_value('BUKTI_PEMBAYARAN'),
     	    'STATUS_PEMBAYARAN' => set_value('STATUS_PEMBAYARAN'),
-    	    'STATUS_TRANSAKSI' => set_value('STATUS_TRANSAKSI'),
+    	    // 'STATUS_TRANSAKSI' => set_value('STATUS_TRANSAKSI'),
+            'STATUS_TRANSAKSI' => 0
     	);
+        $data['mobil'] = $this->M_mobil_admin->get_available();
         $this->load->view('template/header');
         $this->load->view('transaksi/tb_transaksi_form', $data);
         $this->load->view('template/footer');
@@ -193,23 +197,41 @@ class Transaksi extends CI_Controller
     {
         $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
+        // if ($this->form_validation->run() == FALSE) {
+        //     $this->create();
+        // } else {
+            $data_user = array(
+        		'NAME' => $this->input->post('NAMA_USER',TRUE),
+        		'NIK' => $this->input->post('NIK',TRUE)	
+    	    );
+            $userid = $this->Users_model->insert($data_user);
+            date_default_timezone_set('Asia/Jakarta');
+            $date = date('Y-m-d H:i:s');
+            $date2= date('YmdHis');
             $data = array(
-		'ID_USER' => $this->input->post('ID_USER',TRUE),
-		'TGL_ORDER' => $this->input->post('TGL_ORDER',TRUE),
-		'TOTAL_PEMBAYARAN' => $this->input->post('TOTAL_PEMBAYARAN',TRUE),
-		'TGL_PEMBAYARAN' => $this->input->post('TGL_PEMBAYARAN',TRUE),
-		'BUKTI_PEMBAYARAN' => $this->input->post('BUKTI_PEMBAYARAN',TRUE),
-		'STATUS_PEMBAYARAN' => $this->input->post('STATUS_PEMBAYARAN',TRUE),
-		'STATUS_TRANSAKSI' => $this->input->post('STATUS_TRANSAKSI',TRUE),
-	    );
-
+                'KODE_TRANSAKSI' => 'TRN-'.$date2,
+                'ID_USER' => $userid,
+                'TGL_ORDER' => $date,
+                'TOTAL_PEMBAYARAN' => $this->input->post('TOTAL_PEMBAYARAN',TRUE),
+                'STATUS_PEMBAYARAN' => $this->input->post('STATUS_PEMBAYARAN',TRUE),
+                'STATUS_TRANSAKSI' => 0
+            );
             $this->Transaksi_model->insert($data);
+            $data_detail = array(
+                'KODE_TRANSAKSI' => 'TRN-'.$date2,
+                'ID_MOBIL' => $this->input->post('ID_MOBIL',TRUE),
+                'HARGA_MOBIL' => $this->input->post('HARGA_MOBIL',TRUE),
+                'STATUS_MOBIL' => 2,
+                'TGL_SEWA' => $this->input->post('TGL_SEWA',TRUE),
+                'TGL_AKHIR_PENYEWAAN' => $this->input->post('TGL_AKHIR_PENYEWAAN',TRUE),
+                'TOTAL' => $this->input->post('TOTAL_PEMBAYARAN',TRUE),
+                'STATUS' => 0
+            );
+            $this->Transaksi_model->insert_detail($data_detail);
+
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('transaksi'));
-        }
+        // }
     }
     
     public function update($id) 

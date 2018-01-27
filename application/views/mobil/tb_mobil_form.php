@@ -75,8 +75,8 @@
                             <div class="form-group">
                                 <label for="int">STATUS MOBIL <?php echo form_error('STATUS_MOBIL') ?></label>
                                 <select class="form-control" name="STATUS_MOBIL" id="STATUS_MOBIL">
-                                    <option value="0" <?php if ($STATUS_MOBIL==0) echo "selected" ?> >Tidak Aktif</option>
-                                    <option value="1" <?php if ($STATUS_MOBIL==1) echo "selected" ?> >Aktif</option>
+                                    <option value="0" <?php if ($STATUS_MOBIL==0) echo "selected" ?> >Tidak Tersedia</option>
+                                    <option value="1" <?php if ($STATUS_MOBIL==1) echo "selected" ?> >Tersedia</option>
                                 </select> 
                             </div>
                             

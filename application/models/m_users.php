@@ -44,7 +44,7 @@ class m_users extends CI_Model
 
 		#Insert data to table tb_users
 		$insert=$this->db->insert($this->table_name,$data);
-
+		var_dump($insert);die();
 		return $insert;
 	}
 

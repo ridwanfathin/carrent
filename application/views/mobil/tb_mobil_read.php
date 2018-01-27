@@ -39,7 +39,7 @@
                                     echo $row->FASILITAS."&nbsp,&nbsp;";
                                 } ?></td></tr>
                                 <tr><td>STATUS SEWA</td><td><?php if ($STATUS_SEWA==1) echo "Disewa"; else echo "Tidak Disewa"; ?></td></tr>
-							    <tr><td>STATUS MOBIL</td><td><?php if ($STATUS_MOBIL==1) echo "Aktif"; else echo "Tidak Aktif"; ?></td></tr>
+							    <tr><td>STATUS MOBIL</td><td><?php if ($STATUS_MOBIL==1) echo "Tersedia"; else echo "Tidak Tersedia"; ?></td></tr>
 							    <tr><td>CREATED MOBIL</td><td><?php echo $CREATED_MOBIL; ?></td></tr>
                                 <tr><td>IMAGE</td><td><img src="<?php echo base_url('upload/mobil/'.$IMAGE); ?>" width="450px"></td></tr>
 

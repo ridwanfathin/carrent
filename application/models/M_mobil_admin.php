@@ -34,8 +34,15 @@ class M_mobil_admin extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-    // get data by id
-    function get_by_id($id)
+    // get data avalilable car
+    function get_available()
+    {
+        $this->db->where("STATUS_MOBIL", 1);
+        return $this->db->get($this->table)->result();
+    }
+
+     // get data by id
+    function get_id($id)
     {
         $this->db->where($this->table.".".$this->id, $id);
         $this->db->select('*')->from($this->table);

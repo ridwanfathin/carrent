@@ -83,7 +83,10 @@ class Users_model extends CI_Model
     // insert data
     function insert($data)
     {
-        $this->db->insert($this->table, $data);
+        $insert= $this->db->insert($this->table, $data);
+        $res= $this->db->query("SELECT LAST_INSERT_ID()")->result_array();
+        // var_dump();die();
+        return $res[0]["LAST_INSERT_ID()"];
     }
 
     // update data

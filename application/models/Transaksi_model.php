@@ -157,7 +157,7 @@ class Transaksi_model extends CI_Model
         $from_time = strtotime($transaksi->TGL_AKHIR_PENYEWAAN);
         // $data["DENDA"] = round(abs($to_time - $from_time) / 60,2)*$transaksi->TOTAL*50/100;
         if($to_time>$from_time) 
-           $data["DENDA"] = round(abs($to_time - $from_time) / (60*60*2),2)*($transaksi->TOTAL*50/100);
+           $data["DENDA"] = round(abs($to_time - $from_time) / (60*60),2)*($transaksi->TOTAL*50/100);
         else
             $data["Denda"] = 0;
         $data["TOTAL"] = $transaksi->TOTAL+$data["DENDA"];

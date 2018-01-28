@@ -28,7 +28,7 @@
                                 <input type="int" class="form-control" name="NIK" id="NIK" placeholder="NIK" required/>
                             </div>
                             <div class="form-group">
-                                <label for="MOBIL">ID MOBIl</label>
+                                <label for="MOBIL">MOBIL</label>
                                 <select name="MOBIL" id="MOBIL" class="form-control" required>
                                     <option value="">Pilih Mobil</option>
                                     <?php 

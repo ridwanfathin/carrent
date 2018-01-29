@@ -126,7 +126,7 @@ class Transaksi_model extends CI_Model
 
     function cancel($data,$id){
         $transaksi=$this->db->select("KODE_TRANSAKSI,TOTAL")->from($this->table_detail)->where("KODE_TRANSAKSI",$id)->get()->row();
-        $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=2, DANA_KEMBALI=DANA_KEMBALI+".$transaksi->TOTAL." where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
+        $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=2, where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
         $this->db->where("KODE_TRANSAKSI",$id);
         $this->db->update($this->table_detail,$data);
         return $transaksi->KODE_TRANSAKSI;
@@ -137,7 +137,7 @@ class Transaksi_model extends CI_Model
         date_default_timezone_set('Asia/Jakarta');
         $date = date('Y-m-d H:i:s');
         $this->db->query("Update tb_mobil set STATUS_MOBIL=1 where ID_MOBIL='".$transaksi->ID_MOBIL."'",FALSE);
-        $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=1, STATUS_PEMBAYARAN=1, TGL_PEMBAYARAN='".$date."', DANA_KEMBALI=DANA_KEMBALI+".$transaksi->TOTAL." where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
+        $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=1, STATUS_PEMBAYARAN=1, TGL_PEMBAYARAN='".$date."' where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
         $this->db->where("KODE_TRANSAKSI",$id);
         $this->db->update($this->table_detail,$data);
         return $transaksi->KODE_TRANSAKSI;

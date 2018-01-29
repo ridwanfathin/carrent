@@ -40,11 +40,15 @@
                             </div>                    	    
                             <div class="form-group">
                                 <label for="TGL_SEWA">TGL SEWA</label>
-                                <input type="date" class="form-control" name="TGL_SEWA" id="TGL_SEWA" placeholder="TGL ORDER" required/>
+                                <input type="date" class="form-control" name="TGL_SEWA" id="TGL_SEWA" placeholder="TGL SEWA" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="JAM_SEWA">JAM SEWA</label>
+                                 <input type="time" class="form-control" name="JAM_SEWA" id="JAM_SEWA" placeholder="JAM SEWA" required/>
                             </div>
                              <div class="form-group">
-                                <label for="TGL_AKHIR_PENYEWAAN">TGL AKHIR PENYEWAAN</label>
-                                <input type="date" class="form-control" name="TGL_AKHIR_PENYEWAAN" id="TGL_AKHIR_PENYEWAAN" placeholder="TGL ORDER" required/>
+                                <label for="LAMA_PENYEWAAN">LAMA SEWA</label>
+                                <input type="number" class="form-control" name="LAMA_PENYEWAAN" id="LAMA_PENYEWAAN" placeholder="LAMA SEWA" required/>
                             </div>
                     	    <div class="form-group">
                                 <label for="TOTAL_PEMBAYARAN">TOTAL PEMBAYARAN <?php echo form_error('TOTAL_PEMBAYARAN') ?></label>

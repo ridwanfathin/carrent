@@ -100,7 +100,7 @@ class Transaksi extends CI_Controller
                 'BUKTI_PEMBAYARAN' => $row->BUKTI_PEMBAYARAN,
                 'STATUS_PEMBAYARAN' => $row->STATUS_PEMBAYARAN,
                 'STATUS_TRANSAKSI' => $row->STATUS_TRANSAKSI,
-                'DANA_KEMBALI' => $row->DANA_KEMBALI,
+                // 'DANA_KEMBALI' => $row->DANA_KEMBALI,
                 'DETAIL_TRANSAKSI' => $this->Transaksi_model->get_detail_id($id),
             );
 
@@ -129,7 +129,7 @@ class Transaksi extends CI_Controller
                 'BUKTI_PEMBAYARAN' => $row->BUKTI_PEMBAYARAN,
                 'STATUS_PEMBAYARAN' => $row->STATUS_PEMBAYARAN,
                 'STATUS_TRANSAKSI' => $row->STATUS_TRANSAKSI,
-                'DANA_KEMBALI' => $row->DANA_KEMBALI,
+                // 'DANA_KEMBALI' => $row->DANA_KEMBALI,
                 'DETAIL_TRANSAKSI' => $this->Transaksi_model->get_detail_id($id),
             );
 
@@ -158,7 +158,7 @@ class Transaksi extends CI_Controller
                 'BUKTI_PEMBAYARAN' => $row->BUKTI_PEMBAYARAN,
                 'STATUS_PEMBAYARAN' => $row->STATUS_PEMBAYARAN,
                 'STATUS_TRANSAKSI' => $row->STATUS_TRANSAKSI,
-                'DANA_KEMBALI' => $row->DANA_KEMBALI,
+                // 'DANA_KEMBALI' => $row->DANA_KEMBALI,
                 'DETAIL_TRANSAKSI' => $this->Transaksi_model->get_detail_id($id),
             );
 
@@ -217,13 +217,22 @@ class Transaksi extends CI_Controller
                 'STATUS_TRANSAKSI' => 0
             );
             $this->Transaksi_model->insert($data);
+            $tglSewa = $this->input->post('TGL_SEWA',TRUE);
+            $jamSewa = $this->input->post('JAM_SEWA',TRUE);
+            $tglSewa = $tglSewa." ".$jamSewa.":00";
+            $dateSewa = new DateTime($tglSewa);
+            $lamaSewa = $this->input->post('LAMA_PENYEWAAN',TRUE);
+            $tglAkhirSewa = $dateSewa->modify('+'.$lamaSewa.' day');
+            $tglAkhirSewa =  $tglAkhirSewa->format('Y-m-d H:i:s');
+
+            // var_dump($tglAkhirSewa);die();
             $data_detail = array(
                 'KODE_TRANSAKSI' => 'TRN-'.$date2,
                 'ID_MOBIL' => $this->input->post('ID_MOBIL',TRUE),
                 'HARGA_MOBIL' => $this->input->post('HARGA_MOBIL',TRUE),
                 'STATUS_MOBIL' => 2,
-                'TGL_SEWA' => $this->input->post('TGL_SEWA',TRUE),
-                'TGL_AKHIR_PENYEWAAN' => $this->input->post('TGL_AKHIR_PENYEWAAN',TRUE),
+                'TGL_SEWA' => $tglSewa,
+                'TGL_AKHIR_PENYEWAAN' => $tglAkhirSewa,
                 'TOTAL' => $this->input->post('TOTAL_PEMBAYARAN',TRUE),
                 'STATUS' => 0
             );

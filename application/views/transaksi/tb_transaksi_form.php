@@ -28,8 +28,8 @@
                                 <input type="int" class="form-control" name="NIK" id="NIK" placeholder="NIK" required/>
                             </div>
                             <div class="form-group">
-                                <label for="MOBIL">MOBIL</label>
-                                <select name="MOBIL" id="MOBIL" class="form-control" required>
+                                <label for="ID_MOBIL">MOBIL</label>
+                                <select name="ID_MOBIL" id="ID_MOBIL" class="form-control" required>
                                     <option value="">Pilih Mobil</option>
                                     <?php 
                                     foreach($mobil as $m){ 
@@ -47,7 +47,7 @@
                                  <input type="time" class="form-control" name="JAM_SEWA" id="JAM_SEWA" placeholder="JAM SEWA" required/>
                             </div>
                              <div class="form-group">
-                                <label for="LAMA_PENYEWAAN">LAMA SEWA</label>
+                                <label for="LAMA_PENYEWAAN">LAMA SEWA(Hari)</label>
                                 <input type="number" class="form-control" name="LAMA_PENYEWAAN" id="LAMA_PENYEWAAN" placeholder="LAMA SEWA" required/>
                             </div>
                     	    <div class="form-group">

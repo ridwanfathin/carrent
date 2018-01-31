@@ -229,7 +229,6 @@ class Transaksi extends CI_Controller
             $data_detail = array(
                 'KODE_TRANSAKSI' => 'TRN-'.$date2,
                 'ID_MOBIL' => $this->input->post('ID_MOBIL',TRUE),
-                'HARGA_MOBIL' => $this->input->post('HARGA_MOBIL',TRUE),
                 'STATUS_MOBIL' => 1,
                 'TGL_SEWA' => $tglSewa,
                 'TGL_AKHIR_PENYEWAAN' => $tglAkhirSewa,

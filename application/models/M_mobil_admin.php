@@ -37,7 +37,7 @@ class M_mobil_admin extends CI_Model
     // get data avalilable car
     function get_available()
     {
-        $this->db->where("STATUS_MOBIL", 1);
+        $this->db->where("STATUS_MOBIL", 2);
         return $this->db->get($this->table)->result();
     }
 

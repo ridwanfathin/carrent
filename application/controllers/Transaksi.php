@@ -230,7 +230,7 @@ class Transaksi extends CI_Controller
                 'KODE_TRANSAKSI' => 'TRN-'.$date2,
                 'ID_MOBIL' => $this->input->post('ID_MOBIL',TRUE),
                 'HARGA_MOBIL' => $this->input->post('HARGA_MOBIL',TRUE),
-                'STATUS_MOBIL' => 2,
+                'STATUS_MOBIL' => 1,
                 'TGL_SEWA' => $tglSewa,
                 'TGL_AKHIR_PENYEWAAN' => $tglAkhirSewa,
                 'TOTAL' => $this->input->post('TOTAL_PEMBAYARAN',TRUE),

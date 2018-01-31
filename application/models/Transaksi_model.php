@@ -126,6 +126,7 @@ class Transaksi_model extends CI_Model
 
     function cancel($data,$id){
         $transaksi=$this->db->select("KODE_TRANSAKSI,TOTAL")->from($this->table_detail)->where("KODE_TRANSAKSI",$id)->get()->row();
+        $this->db->query("Update tb_mobil set STATUS_MOBIL=2 where ID_MOBIL='".$transaksi->ID_MOBIL."'",FALSE);
         $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=2, where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
         $this->db->where("KODE_TRANSAKSI",$id);
         $this->db->update($this->table_detail,$data);
@@ -159,11 +160,11 @@ class Transaksi_model extends CI_Model
         if($to_time>$from_time) 
            $data["DENDA"] = round(abs($to_time - $from_time) / (60*60),2)*($transaksi->TOTAL*50/100);
         else
-            $data["Denda"] = 0;
+            $data["DENDA"] = 0;
         $data["TOTAL"] = $transaksi->TOTAL+$data["DENDA"];
 
         $this->db->query("Update tb_mobil set STATUS_MOBIL=2 where ID_MOBIL='".$transaksi->ID_MOBIL."'",FALSE);
-        $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=3, TOTAL_PEMBAYARAN= ". $data["TOTAL"].", where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
+        $this->db->query("Update tb_transaksi set STATUS_TRANSAKSI=3, TOTAL_PEMBAYARAN= ". $data["TOTAL"]." where KODE_TRANSAKSI='".$transaksi->KODE_TRANSAKSI."'",FALSE);
         
         $this->db->where("KODE_TRANSAKSI",$id);
         $this->db->update($this->table_detail,$data);
